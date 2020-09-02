@@ -75,7 +75,7 @@ const HomeScreen = () => {
 
     // call as ComponentDidUpdate on specific variable update
     useEffect(() => {
-        setVariable(1);
+        setVariable(5);
     }, [variable, variable1])
 
     // call as ComponentDidUpdate on every variable update
