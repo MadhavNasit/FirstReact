@@ -64,11 +64,22 @@ const FlexScreenStyle = StyleSheet.create({
   },
   cardView: {
     flex: 1,
+    // flexDirection: 'column',
+    // justifyContent: 'center',
     margin: 5,
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
     borderRadius: 10,
+  },
+  cardText: {
+    alignSelf: 'center',
+  },
+  imageFit: {
+    height: '100%',
+    width: "100%",
+    borderRadius: 10,
+    overflow: 'hidden'
   }
 });
 
