@@ -1,12 +1,10 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, Text, Image, ImageBackground } from 'react-native';
+import { View, SafeAreaView, StatusBar, Text, Image, ImageBackground, ScrollView } from 'react-native';
 import FlexScreenStyle from './flex-screen-style';
 
-const FlexScreen = () => {
+const MainView = () => {
   return (
-    <SafeAreaView style={FlexScreenStyle.safeAreaView}>
-      <StatusBar barStyle="dark-content" />
-
+    <View>
       <View style={FlexScreenStyle.topView}>
         <View style={FlexScreenStyle.leftTopView}>
           <View style={FlexScreenStyle.cardView}>
@@ -73,6 +71,19 @@ const FlexScreen = () => {
           </View>
         </View>
       </View>
+    </View>
+  );
+}
+
+const FlexScreen = () => {
+  return (
+    <SafeAreaView style={FlexScreenStyle.safeAreaView}>
+      <StatusBar barStyle="dark-content" />
+      <ScrollView>
+
+        {MainView()}
+        {MainView()}
+      </ScrollView>
 
 
     </SafeAreaView >

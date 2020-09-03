@@ -7,7 +7,8 @@ const FlexScreenStyle = StyleSheet.create({
   },
   // Top Half of Screen
   topView: {
-    flex: 1,
+    // flex: 1,
+    height: 400,
     paddingHorizontal: 5,
     // backgroundColor: 'red',
     flexDirection: 'row',
@@ -33,8 +34,9 @@ const FlexScreenStyle = StyleSheet.create({
   },
   // Bottom Half of Screen
   bottomView: {
-    flex: 1,
-    flexDirection: 'column',
+    // flex: 1,
+    // flexDirection: 'column',
+    height: 400,
     paddingHorizontal: 5,
     // backgroundColor: 'green',
   },
