@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, Text, Image, ImageBackground, ScrollView, FlatList } from 'react-native';
+import { View, SafeAreaView, StatusBar, ImageBackground, ScrollView } from 'react-native';
 import FlexScreenStyle from './flex-screen-style';
 
 
