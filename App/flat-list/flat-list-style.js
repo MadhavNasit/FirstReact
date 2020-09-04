@@ -1,39 +1,72 @@
 import { StyleSheet } from 'react-native';
 
 const FlatListStyle = StyleSheet.create({
+  // Header Style
+  headerView: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.80)',
+    height: 65,
+  },
+  textHeader: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: "center",
+    color: '#fafafa',
+  },
+  // Flat List View Box
   cardView: {
     flex: 1,
     height: 100,
-    margin: 5,
+    marginHorizontal: 10,
+    marginVertical: 5,
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
     borderRadius: 10,
+    overflow: 'hidden'
   },
   imageFit: {
     flex: 1,
-    flexDirection: 'row',
-    // justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: 'cover',
-    borderRadius: 10,
-    overflow: 'hidden'
+    justifyContent: 'center',
+    width: '100%',
+    position: 'relative',
+
   },
   bannerText: {
-    flex: 1,
-    // justifyContent: 'center',
-    flexDirection: 'row',
-    // width: '100%',
-    textAlign: 'center',
+    position: 'absolute',
     fontSize: 16,
     fontWeight: 'bold',
-    backgroundColor: '#151111',
+    backgroundColor: 'rgba(0, 0, 0, 0.80)',
     color: '#fafafa',
-    paddingHorizontal: 5,
-    paddingVertical: 10,
-    marginHorizontal: '25%',
-
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+  },
+  // Footer Style
+  footerView: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 15,
+    marginHorizontal: 10,
+    marginBottom: 5
+  },
+  textFooter: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  //Empty list View Style
+  emptyListView: {
+    flex: 1,
+    justifyContent: 'center',
+    height: 700,
+  },
+  textEmptyList: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: 'center'
   }
+
 })
 
 export default FlatListStyle;
