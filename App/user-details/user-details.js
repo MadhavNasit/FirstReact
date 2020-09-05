@@ -15,7 +15,7 @@ const UserDetails = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [loaderShow, setLoader] = useState(false);
-  const [arrayChange, setChangeArray] = useState(0);
+  const [arrayChange, setChangeArray] = useState();
 
   const ValidateFields = () => {
     Keyboard.dismiss();
@@ -55,7 +55,7 @@ const UserDetails = () => {
   };
 
   const AgeValidation = () => {
-    if (age == null) {
+    if (age == '') {
       setAgeError('Please Enter Age');
       return false;
     }
@@ -146,7 +146,6 @@ const UserDetails = () => {
         onPress: () => {
           User_Data.splice(index, 1);
           setChangeArray(User_Data.length);
-          console.log(User_Data.length);
         }
       }
     ];

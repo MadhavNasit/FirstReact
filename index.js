@@ -9,6 +9,7 @@ import { name as appName } from './app.json';
 // import ContactMe from './App/contact-me/contact-me';
 // import FlexScreen from './App/flex-practice/flex-screen';
 // import FlatListScreen from './App/flat-list/flat-list';
-import UserDetails from './App/user-details/user-details';
+// import UserDetails from './App/user-details/user-details';
+import UserDetailsClass from './App/user-details/user-details-class';
 
-AppRegistry.registerComponent(appName, () => UserDetails);
+AppRegistry.registerComponent(appName, () => UserDetailsClass);
