@@ -15,7 +15,7 @@ class UserDetailsClass extends Component {
       email: "",
       emailError: "",
       loaderShow: false,
-      user_Data: [{ name: 'madhav', age: 18, email: 'ejhdj' }],
+      user_Data: [],
       arrayLength: 0
 
     }
