@@ -5,8 +5,11 @@ const UserDetailsStyle = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fafafa',
   },
-  formView: {
+  keyBoardAvoidingView: {
     flex: 6,
+  },
+  formView: {
+    // flex: 6,
     // marginHorizontal: 20,
     paddingVertical: 25,
     paddingHorizontal: 25,
@@ -81,8 +84,8 @@ const UserDetailsStyle = StyleSheet.create({
     borderWidth: 1,
   },
   cardView: {
-    height: 90,
-    borderColor: 'gray',
+    // height: 90,
+    // borderColor: 'grey',
     borderWidth: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 14,
@@ -100,7 +103,7 @@ const UserDetailsStyle = StyleSheet.create({
   detailView: {
     flex: 8,
     flexWrap: 'wrap',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   textSubHeading: {
     fontSize: 16,
@@ -115,6 +118,7 @@ const UserDetailsStyle = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: 'red'
     height: 400,
+    // backgroundColor: 'red'
   },
   textEmptyList: {
     fontWeight: 'bold',
