@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
-import { StatusBar, SafeAreaView, View, TextInput, Text, TouchableOpacity, FlatList, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { StatusBar, SafeAreaView, View, TextInput, Text, TouchableOpacity, FlatList, Picker, Keyboard, KeyboardAvoidingView, Button, Platform, StyleSheet } from 'react-native';
 import UserDetailsStyle from './user-details-style';
 import Loader from '../component/loader';
 import Swipeout from 'react-native-swipeout';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import RNPickerSelect from 'react-native-picker-select';
+import DatePicker from 'react-native-datepicker'
 
 const User_Data = [];
+const Gender_List = [
+  {
+    label: 'Male',
+    value: 'male',
+  },
+  {
+    label: 'Female',
+    value: 'female',
+  },
+  {
+    label: 'Other',
+    value: 'other',
+  },
+];
 
 const UserDetails = () => {
 
@@ -18,7 +35,14 @@ const UserDetails = () => {
   const [arrayChange, setChangeArray] = useState();
   const [isEdit, setIsEdit] = useState(false);
   const [arrayIndex, setIndex] = useState('');
+  const [gender, setGender] = useState('');
+  const [date, setDate] = useState("2020-09-08");
 
+  const placeholder = {
+    label: 'Select a gender...',
+    value: null,
+    color: '#9EA0A4',
+  };
 
   inputs = {};
 
@@ -38,18 +62,24 @@ const UserDetails = () => {
         userObj["name"] = userName;
         userObj["age"] = age;
         userObj["email"] = email;
+        userObj["gender"] = gender;
+        userObj['date'] = date;
         User_Data.push(userObj);
       }
       else {
         User_Data[arrayIndex].name = userName;
         User_Data[arrayIndex].age = age;
         User_Data[arrayIndex].email = email;
+        User_Data[arrayIndex].gender = gender;
+        User_Data[arrayIndex].date = date;
         setIsEdit(false);
       }
       setChangeArray(User_Data.length);
       setUserName('');
       setAge('');
       setEmail('');
+      setGender('');
+      setDate('');
     }
 
   }
@@ -169,6 +199,8 @@ const UserDetails = () => {
           setUserName(User_Data[index].name);
           setAge(User_Data[index].age);
           setEmail(User_Data[index].email);
+          setGender(User_Data[index].gender);
+          setDate(User_Data[index].date);
           setIsEdit(true);
           setIndex(index);
         }
@@ -192,6 +224,8 @@ const UserDetails = () => {
           {AddUserDetail('Name', item.name)}
           {AddUserDetail('Age', item.age)}
           {AddUserDetail('Email', item.email)}
+          {AddUserDetail('Gender', item.gender)}
+          {AddUserDetail('Date', item.date)}
         </View>
       </Swipeout>
     );
@@ -235,7 +269,7 @@ const UserDetails = () => {
                 onChangeText={value => setAge(value)}
                 keyboardType={'numeric'}
                 ref={(input) => { secondTextInput = input; }}
-                // blurOnSubmit={false}
+                blurOnSubmit={false}
                 returnKeyType={"next"}
                 ref={input => { this.inputs['ageField'] = input }}
                 onSubmitEditing={() => { this.focusTheField('emailField'); }}
@@ -245,6 +279,7 @@ const UserDetails = () => {
               <Text style={UserDetailsStyle.errorText}>{ageError}</Text>
             </View>
           </View>
+
           <View style={UserDetailsStyle.formFieldBox}>
             <View style={UserDetailsStyle.formFieldView}>
               <Text style={UserDetailsStyle.labelForm}>{`Email:`}</Text>
@@ -263,12 +298,76 @@ const UserDetails = () => {
               <Text style={UserDetailsStyle.errorText}>{emailError}</Text>
             </View>
           </View>
+
+          <View style={UserDetailsStyle.formFieldBox}>
+            <View style={UserDetailsStyle.formFieldView}>
+              <Text style={UserDetailsStyle.labelForm}>{`Gender:`}</Text>
+              <View style={{ flex: 9, marginBottom: 5 }}>
+                <RNPickerSelect
+                  style={pickerSelectStyles}
+                  value={gender}
+                  onValueChange={(value) => { setGender(value) }}
+                  items={Gender_List}
+                  placeholder={placeholder}
+                />
+              </View>
+            </View>
+          </View>
+
+
+          <View style={UserDetailsStyle.formFieldBox, { marginTop: 8, marginBottom: 20 }}>
+            <View style={UserDetailsStyle.formFieldView}>
+              <Text style={UserDetailsStyle.labelForm}>{`Date:`}</Text>
+              <View style={{ flex: 9 }}>
+                <DatePicker
+                  style={{ width: '100%' }}
+                  date={date}
+                  mode="date"
+                  placeholder="select date"
+                  format="YYYY-MM-DD"
+                  // minDate="2016-05-01"
+                  // maxDate="2016-06-01"
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      right: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      paddingHorizontal: 10,
+                      borderRadius: 4,
+                      borderColor: 'gray',
+                      alignItems: 'flex-start',
+                    },
+                    datePicker: {
+                      backgroundColor: '#d9d9d9'
+                    },
+                    btnTextConfirm: {
+                      color: 'blue',
+                    }
+                    // ... You can check the source to find the other keys.
+                  }}
+                  onDateChange={(date) => { setDate(date) }}
+                />
+              </View>
+              {/* <Button onPress={showDatepicker}
+                title={show ? "Hide date picker!" : "Show date picker!"} /> */}
+            </View>
+          </View>
+
+
+
+
+
           <TouchableOpacity style={UserDetailsStyle.button}
             onPress={() => ValidateFields()}>
             <Text style={UserDetailsStyle.buttonText}>{'Submit Details'}</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View >
     );
   }
 
@@ -278,8 +377,10 @@ const UserDetails = () => {
       <StatusBar barStyle="dark-content" />
 
 
+      {AddUserForm()}
 
       <View style={UserDetailsStyle.flatListView}>
+
         {loaderShow ? <Loader /> :
           <FlatList
             data={User_Data}
@@ -295,10 +396,35 @@ const UserDetails = () => {
         }
 
 
+
+
       </View>
-      {AddUserForm()}
+
+
     </SafeAreaView >
   );
 }
-
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    height: 40,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    marginBottom: 5,
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'black',
+    marginBottom: 5,
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+});
 export default UserDetails;

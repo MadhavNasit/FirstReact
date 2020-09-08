@@ -48,7 +48,7 @@ const UserDetailsStyle = StyleSheet.create({
     flexDirection: 'row',
   },
   labelForm: {
-    flex: 2,
+    flex: 3,
     height: 40,
     fontSize: 18,
     paddingVertical: 7
@@ -62,14 +62,17 @@ const UserDetailsStyle = StyleSheet.create({
     color: 'black',
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: 'grey',
+    borderColor: 'gray',
     paddingHorizontal: 12,
     marginBottom: 5,
   },
+
+
   button: {
     alignItems: "center",
     backgroundColor: 'blue',
     padding: 12,
+    marginTop: 5,
     marginHorizontal: 80,
   },
   buttonText: {
@@ -117,7 +120,7 @@ const UserDetailsStyle = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     // backgroundColor: 'red'
-    height: 400,
+    paddingVertical: '30%',
     // backgroundColor: 'red'
   },
   textEmptyList: {
