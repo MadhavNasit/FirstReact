@@ -6,6 +6,7 @@ import Swipeout from 'react-native-swipeout';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker'
+import { validateEmail, validateName } from '../utils/validation';
 
 const User_Data = [];
 const Gender_List = [
@@ -36,7 +37,7 @@ const UserDetails = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [arrayIndex, setIndex] = useState('');
   const [gender, setGender] = useState('');
-  const [date, setDate] = useState("2020-09-08");
+  const [date, setDate] = useState('');
 
   const placeholder = {
     label: 'Select a gender...',
@@ -85,20 +86,8 @@ const UserDetails = () => {
   }
 
   const NameValidation = () => {
-    var regName = /^[a-zA-Z ]{2,40}$/;
-
-    if (userName.length == 0) {
-      setUserNameError('Please Enter User Name');
-      return false;
-    }
-    else if (!regName.test(userName)) {
-      setUserNameError('Please Enter Valid User Name');
-      return false;
-    }
-    else {
-      setUserNameError('');
-      return true;
-    }
+    let data = validateName(userName);
+    setUserNameError(data);
   };
 
   const AgeValidation = () => {
@@ -291,7 +280,7 @@ const UserDetails = () => {
                 // blurOnSubmit={false}
                 onChangeText={value => setEmail(value)}
                 ref={input => { this.inputs['emailField'] = input }}
-                onSubmitEditing={() => ValidateFields()}
+              // onSubmitEditing={() => { this.focusTheField('genderField'); }}
               />
             </View>
             <View style={UserDetailsStyle.errorView}>
@@ -309,6 +298,8 @@ const UserDetails = () => {
                   onValueChange={(value) => { setGender(value) }}
                   items={Gender_List}
                   placeholder={placeholder}
+                // ref={input => { this.inputs['genderField'] = input }}
+                // onSubmitEditing={() => { this.focusTheField('dateField'); }}
                 />
               </View>
             </View>
@@ -350,7 +341,7 @@ const UserDetails = () => {
                     }
                     // ... You can check the source to find the other keys.
                   }}
-                  onDateChange={(date) => { setDate(date) }}
+
                 />
               </View>
               {/* <Button onPress={showDatepicker}
