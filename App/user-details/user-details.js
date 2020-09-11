@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar, SafeAreaView, View, TextInput, Text, TouchableOpacity, FlatList, Picker, Keyboard, KeyboardAvoidingView, Button, Platform, StyleSheet } from 'react-native';
 import UserDetailsStyle from './user-details-style';
 import Loader from '../component/loader';
@@ -7,6 +7,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker'
 import { validateEmail, validateName } from '../utils/validation';
+import { NavigationContainer } from '@react-navigation/native';
 
 const User_Data = [];
 const Gender_List = [
@@ -24,7 +25,7 @@ const Gender_List = [
   },
 ];
 
-const UserDetails = () => {
+const UserDetails = ({ navigation, route }) => {
 
   const [userName, setUserName] = useState('');
   const [userNameError, setUserNameError] = useState('');
@@ -38,6 +39,11 @@ const UserDetails = () => {
   const [arrayIndex, setIndex] = useState('');
   const [gender, setGender] = useState('');
   const [date, setDate] = useState('');
+
+  useEffect(() => {
+    setUserName(route.params?.post);
+  }, [route.params?.post])
+
 
   const placeholder = {
     label: 'Select a gender...',
@@ -319,6 +325,7 @@ const UserDetails = () => {
                   // minDate="2016-05-01"
                   // maxDate="2016-06-01"
                   confirmBtnText="Confirm"
+                  onDateChange={(date) => setDate(date)}
                   cancelBtnText="Cancel"
                   customStyles={{
                     dateIcon: {
@@ -341,7 +348,6 @@ const UserDetails = () => {
                     }
                     // ... You can check the source to find the other keys.
                   }}
-
                 />
               </View>
               {/* <Button onPress={showDatepicker}
@@ -352,11 +358,32 @@ const UserDetails = () => {
 
 
 
-
-          <TouchableOpacity style={UserDetailsStyle.button}
-            onPress={() => ValidateFields()}>
-            <Text style={UserDetailsStyle.buttonText}>{'Submit Details'}</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <TouchableOpacity style={UserDetailsStyle.button}
+              onPress={() => ValidateFields()}>
+              <Text style={UserDetailsStyle.buttonText}>{'Submit Details'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={UserDetailsStyle.button}
+              onPress={() => navigation.navigate('ShowDetails',
+                {
+                  name: userName,
+                  age: age,
+                  email: email,
+                  gender: gender,
+                  date: date
+                })}>
+              <Text style={UserDetailsStyle.buttonText}>{'Send Details'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={UserDetailsStyle.button}
+              onPress={() => navigation.goBack()}>
+              <Text style={UserDetailsStyle.buttonText}>{'Go Home'}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={UserDetailsStyle.button}
+              onPress={() => navigation.setOptions({ title: 'Updated!' })}
+            >
+              <Text style={UserDetailsStyle.buttonText}>{'Change Title'}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View >
     );
@@ -366,8 +393,6 @@ const UserDetails = () => {
   return (
     <SafeAreaView style={UserDetailsStyle.safeAreaView}>
       <StatusBar barStyle="dark-content" />
-
-
       {AddUserForm()}
 
       <View style={UserDetailsStyle.flatListView}>
@@ -385,9 +410,6 @@ const UserDetails = () => {
             refreshing={loaderShow}
           />
         }
-
-
-
 
       </View>
 

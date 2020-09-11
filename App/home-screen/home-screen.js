@@ -55,17 +55,19 @@ const AddTechnologies = (typeOfTechnology, technologies) => {
     );
 }
 
-const customButton = (buttonText) => {
-    return (
-        <TouchableOpacity style={HomeScreenStyle.button}>
-            <Text style={HomeScreenStyle.buttonText}>{buttonText}</Text>
-        </TouchableOpacity>
-    );
-}
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const [variable, setVariable] = useState();
     const [variable1, setVariable1] = useState();
+    const customButton = (buttonText) => {
+        return (
+            <TouchableOpacity
+                style={HomeScreenStyle.button}
+                onPress={() => navigation.navigate('UserDetails')}>
+                <Text style={HomeScreenStyle.buttonText}>{buttonText}</Text>
+            </TouchableOpacity>
+        );
+    }
 
     // call as ComponentDidMount
     useEffect(() => {

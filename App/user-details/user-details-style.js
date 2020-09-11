@@ -73,7 +73,8 @@ const UserDetailsStyle = StyleSheet.create({
     backgroundColor: 'blue',
     padding: 12,
     marginTop: 5,
-    marginHorizontal: 80,
+
+    marginHorizontal: 8,
   },
   buttonText: {
     color: '#fff',
