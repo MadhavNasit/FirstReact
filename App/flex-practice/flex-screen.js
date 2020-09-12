@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, SafeAreaView, StatusBar, ImageBackground, ScrollView } from 'react-native';
 import FlexScreenStyle from './flex-screen-style';
+import CustomHeader from '../component/custom-header';
 
 
 // Return image with Styles
@@ -63,13 +64,16 @@ const SpaceImagesView = () => {
 const FlexScreen = () => {
   return (
     <SafeAreaView style={FlexScreenStyle.safeAreaView}>
-      <StatusBar barStyle="dark-content" />
-      <ScrollView
-        style={{ margin: 10 }}
-      >
-        {SpaceImagesView()}
-        {SpaceImagesView()}
-      </ScrollView>
+      <StatusBar barStyle="light-content" />
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <CustomHeader title="Flex screen" />
+        <ScrollView
+          style={{ margin: 10 }}
+        >
+          {SpaceImagesView()}
+          {SpaceImagesView()}
+        </ScrollView>
+      </View>
     </SafeAreaView >
   );
 }

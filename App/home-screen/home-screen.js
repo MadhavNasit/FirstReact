@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, ScrollView, Image, TouchableOpacity } from 'react-native';
 import HomeScreenStyle from './home-screen-style';
 import AddPersonalInfo from '../component/AddPersonalInfo';
+import CustomHeader from '../component/custom-header';
 
 const Header = () => {
     return (
         <View>
 
             <View style={HomeScreenStyle.headerView}>
-                <Text style={HomeScreenStyle.headerText}>{`About Me`}</Text>
+                {/* <Text style={HomeScreenStyle.headerText}>{`About Me`}</Text> */}
             </View>
             <View style={HomeScreenStyle.profilePhoto}>
                 <Image
@@ -86,64 +87,65 @@ const HomeScreen = ({ navigation }) => {
     })
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar barStyle="dark-content" />
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
+            <StatusBar barStyle="light-content" />
+            <View style={{ flex: 1, backgroundColor: '#fff' }}>
+                <CustomHeader title="Home" />
+                {Header()}
 
-            {Header()}
+                <ScrollView style={HomeScreenStyle.scrollView}>
 
-            <ScrollView style={HomeScreenStyle.scrollView}>
-
-                {/* Basic Info. Name. Degree and Location */}
-                <View >
-                    <View style={HomeScreenStyle.profileData}>
-                        <Text style={HomeScreenStyle.profileDataName}>{`Madhav Nasit`}</Text>
-                        <Text style={HomeScreenStyle.profileDataContactText}>{`Computer Engineer`}</Text>
-                        <Text style={HomeScreenStyle.profileDataContactText}>{`Rajkot, Gujarat`}</Text>
+                    {/* Basic Info. Name. Degree and Location */}
+                    <View >
+                        <View style={HomeScreenStyle.profileData}>
+                            <Text style={HomeScreenStyle.profileDataName}>{`Madhav Nasit`}</Text>
+                            <Text style={HomeScreenStyle.profileDataContactText}>{`Computer Engineer`}</Text>
+                            <Text style={HomeScreenStyle.profileDataContactText}>{`Rajkot, Gujarat`}</Text>
+                        </View>
                     </View>
-                </View>
 
-                {/* Personal Information View */}
-                <View style={HomeScreenStyle.mainView}>
-                    {MainHeading('Personal Information')}
-                    <View style={HomeScreenStyle.personalInfoData}>
-                        <AddPersonalInfo
-                            subHeading={"D.O.B"}
-                            information={`29/03/1999`}
-                        // onUpdateCounter={(value,index)=>setVariable1(value)}
-                        />
-                        {/* {AddPersonalInformation(`D.O.B`, `29/03/1999`)}
+                    {/* Personal Information View */}
+                    <View style={HomeScreenStyle.mainView}>
+                        {MainHeading('Personal Information')}
+                        <View style={HomeScreenStyle.personalInfoData}>
+                            <AddPersonalInfo
+                                subHeading={"D.O.B"}
+                                information={`29/03/1999`}
+                            // onUpdateCounter={(value,index)=>setVariable1(value)}
+                            />
+                            {/* {AddPersonalInformation(`D.O.B`, `29/03/1999`)}
                         {AddPersonalInformation(`Cont`, `9876543210`)}
                         {AddPersonalInformation(`Email`, `madhavnasit29@gmail.com`)}
                         {AddPersonalInformation(`Nationality`, `Indian`)}
                         {AddPersonalInformation(`Primary Language`, `Gujarati`)}
                         {AddPersonalInformation(`Known Languages`, `English, Hindi, Gujarati`)}
                         {AddPersonalInformation(`Marital Status`, `Unmarriedd`)} */}
+                        </View>
                     </View>
-                </View>
 
-                {/* Education details View */}
-                <View style={HomeScreenStyle.mainView}>
-                    {MainHeading('Education')}
-                    <View style={HomeScreenStyle.personalInfoData}>
-                        {AddEducationalDetails(`Government Engineering College, Rajkot`, `B.E`, `Result : 8.93 CGPA`, `July 2016 - June 2020`)}
-                        {AddEducationalDetails(`Modi Schools, Rajkot`, `H.S.C`, `Result : 96.60 PR`, `May 2014 - March 2016`)}
-                        {AddEducationalDetails(`Modi Schools, Rajkot`, `S.S.C`, `Result : 99.63 PR`, `May 2013 - March 2014`)}
+                    {/* Education details View */}
+                    <View style={HomeScreenStyle.mainView}>
+                        {MainHeading('Education')}
+                        <View style={HomeScreenStyle.personalInfoData}>
+                            {AddEducationalDetails(`Government Engineering College, Rajkot`, `B.E`, `Result : 8.93 CGPA`, `July 2016 - June 2020`)}
+                            {AddEducationalDetails(`Modi Schools, Rajkot`, `H.S.C`, `Result : 96.60 PR`, `May 2014 - March 2016`)}
+                            {AddEducationalDetails(`Modi Schools, Rajkot`, `S.S.C`, `Result : 99.63 PR`, `May 2013 - March 2014`)}
+                        </View>
                     </View>
-                </View>
 
-                {/* Know Technology View */}
-                <View style={HomeScreenStyle.mainView}>
-                    {MainHeading('Known Technologies')}
-                    <View style={HomeScreenStyle.personalInfoData}>
-                        {AddTechnologies('Backend Technology', `C#,.Net MVC,.Net Core,.Net Core Web API`)}
-                        {AddTechnologies('Frontend Technology', `HTML,CSS,Bootstrap,React Native`)}
+                    {/* Know Technology View */}
+                    <View style={HomeScreenStyle.mainView}>
+                        {MainHeading('Known Technologies')}
+                        <View style={HomeScreenStyle.personalInfoData}>
+                            {AddTechnologies('Backend Technology', `C#,.Net MVC,.Net Core,.Net Core Web API`)}
+                            {AddTechnologies('Frontend Technology', `HTML,CSS,Bootstrap,React Native`)}
+                        </View>
                     </View>
-                </View>
 
-            </ScrollView>
+                </ScrollView>
 
-            {customButton(`Contact Me`)}
-
+                {customButton(`Contact Me`)}
+            </View>
         </SafeAreaView>
     );
 }

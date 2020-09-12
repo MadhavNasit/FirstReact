@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 const HomeScreenStyle = StyleSheet.create({
   headerView: {
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#000FFF',
     paddingVertical: 15,
-    height: 160,
+    height: 140,
   },
   headerText: {
     color: '#fff',
@@ -31,8 +31,7 @@ const HomeScreenStyle = StyleSheet.create({
     height: 140,
     resizeMode: 'cover',
     borderRadius: 80,
-    borderWidth: 1,
-    borderColor: '#c4c4c4',
+    borderColor: '#c4c4c4'
   },
   profileData: {
     padding: 5,
@@ -58,7 +57,7 @@ const HomeScreenStyle = StyleSheet.create({
     fontWeight: 'bold',
     // color: '#0011ff',
     color: '#fff',
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#000FFF',
     paddingLeft: 4,
   },
   personalInfoData: {
@@ -98,7 +97,7 @@ const HomeScreenStyle = StyleSheet.create({
   button: {
     marginTop: 5,
     alignItems: "center",
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#0000FF',
     padding: 12
   },
   buttonText: {

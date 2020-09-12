@@ -161,7 +161,6 @@
 				22F7A4E6849CB933DF99F628 /* Pods-FirstReact-tvOSTests.debug.xcconfig */,
 				4CA9E39EA8C070E11B6723DF /* Pods-FirstReact-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

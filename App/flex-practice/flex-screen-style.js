@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const FlexScreenStyle = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    backgroundColor: '#0000ff',
   },
   // Top Half of Screen
   topView: {

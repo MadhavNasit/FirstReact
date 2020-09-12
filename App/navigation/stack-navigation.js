@@ -4,13 +4,13 @@ import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './App/home-screen/home-screen';
-import UserDetails from './App/user-details/user-details';
-import ShowDetails from './App/show-details/show-details';
+import HomeScreen from '../home-screen/home-screen';
+import UserDetails from '../user-details/user-details';
+import ShowDetails from '../show-details/show-details';
 
 const Stack = createStackNavigator();
 
-function App() {
+function StackNavigation() {
   return (
     // <NavigationContainer>
     <Stack.Navigator
@@ -21,7 +21,7 @@ function App() {
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-          fontSize: 18,
+          fontSize: 24,
           fontWeight: 'bold',
         },
       }} >
@@ -29,14 +29,7 @@ function App() {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Home',
-          headerRight: () => (
-            <Button
-              onPress={() => alert('This is a button!')}
-              title="Info"
-              color="#fff"
-            />
-          )
+          headerShown: false
         }}
       />
       <Stack.Screen
@@ -54,4 +47,4 @@ function App() {
   );
 }
 
-export default App;
+export default StackNavigation;

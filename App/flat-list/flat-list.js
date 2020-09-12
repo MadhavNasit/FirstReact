@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, FlatList, Text, Image, ImageBackground, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView, View, FlatList, Text, Image, ImageBackground, ScrollView, TouchableOpacity, Alert, StatusBar } from 'react-native';
 import FlatListStyle from './flat-list-style';
 import Loader from '../component/loader';
+import CustomHeader from '../component/custom-header';
 
 // List of title and Image
 const FLATLIST_DATA = [
@@ -97,23 +98,27 @@ const FlatListScreen = () => {
     setLoader(true);
     setTimeout(() => {
       setLoader(false);
-    }, 3000);
+    }, 2000);
   };
 
   // Return Loader for 3 sec and then Return flat List
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
+      <StatusBar barStyle="light-content" />
       {loaderShow ? <Loader /> :
-        <FlatList
-          data={FLATLIST_DATA}
-          renderItem={renderItem}
-          keyExtractor={item => item.title}
-          ListHeaderComponent={HeaderView()}
-          ListFooterComponent={FooterView()}
-          ListEmptyComponent={EmptyListComponentView()}
-          onRefresh={() => this.onRefresh()}
-          refreshing={loaderShow}
-        />
+        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          <CustomHeader title="Flat List" />
+          <FlatList
+            data={FLATLIST_DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.title}
+            // ListHeaderComponent={HeaderView()}
+            ListFooterComponent={FooterView()}
+            ListEmptyComponent={EmptyListComponentView()}
+            onRefresh={() => this.onRefresh()}
+            refreshing={loaderShow}
+          />
+        </View>
       }
     </SafeAreaView >
   );

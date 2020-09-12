@@ -72,6 +72,7 @@ const UserDetails = ({ navigation, route }) => {
         userObj["gender"] = gender;
         userObj['date'] = date;
         User_Data.push(userObj);
+        console.log(User_Data);
       }
       else {
         User_Data[arrayIndex].name = userName;
@@ -92,9 +93,15 @@ const UserDetails = ({ navigation, route }) => {
   }
 
   const NameValidation = () => {
-    let data = validateName(userName);
-    setUserNameError(data);
-  };
+    let nameData = validateName(userName);
+    setUserNameError(nameData);
+    if (nameData == "") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   const AgeValidation = () => {
     var regAge = /^[0-9]+$/;
@@ -232,9 +239,9 @@ const UserDetails = ({ navigation, route }) => {
       <View
         style={UserDetailsStyle.keyboardAvoidingView}
       >
-        <View style={UserDetailsStyle.formHeading}>
+        {/* <View style={UserDetailsStyle.formHeading}>
           <Text style={UserDetailsStyle.textFormHeading}>{`Add User Details`}</Text>
-        </View>
+        </View> */}
         <View style={UserDetailsStyle.formView}>
           <View style={UserDetailsStyle.formFieldBox}>
             <View style={UserDetailsStyle.formFieldView}>
@@ -392,7 +399,7 @@ const UserDetails = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={UserDetailsStyle.safeAreaView}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       {AddUserForm()}
 
       <View style={UserDetailsStyle.flatListView}>
