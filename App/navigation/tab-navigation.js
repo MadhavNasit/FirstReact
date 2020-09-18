@@ -10,6 +10,7 @@ import UserDetails from '../user-details/user-details';
 import FlexScreen from '../flex-practice/flex-screen';
 import App from '../../App';
 import StackNavigation from './stack-navigation';
+import UsersRedux from '../users-redux/users-redux';
 
 // function HomeScreen({ navigation }) {
 //   return (
@@ -75,6 +76,7 @@ export default function TabNavigation() {
     <NavigationContainer>
       <Tab.Navigator>
         {tabItem('Home', StackNavigation, icons.home)}
+        {tabItem('UserDetails', UsersRedux, icons.menu)}
         {tabItem('FlexScreen', FlexScreen, icons.gallery)}
         {tabItem('flatList1', FlatList, icons.flatlist)}
       </Tab.Navigator>

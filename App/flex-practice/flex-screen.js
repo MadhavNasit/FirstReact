@@ -66,7 +66,7 @@ const FlexScreen = () => {
     <SafeAreaView style={FlexScreenStyle.safeAreaView}>
       <StatusBar barStyle="light-content" />
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <CustomHeader title="Flex screen" />
+        {/* <CustomHeader title="Flex screen" /> */}
         <ScrollView
           style={{ margin: 10 }}
         >

@@ -43,7 +43,7 @@ const AddTechnologies = (typeOfTechnology, technologies) => {
     let myloop = [];
     for (let i = 0; i < techArray.length; i++) {
         myloop.push(
-            <Text>{i + 1 + ` . ` + techArray[i]}</Text>
+            <Text key={i}>{i + 1 + ` . ` + techArray[i]}</Text>
         );
     }
     return (
@@ -90,7 +90,7 @@ const HomeScreen = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
             <StatusBar barStyle="light-content" />
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
-                <CustomHeader title="Home" />
+                {/* <CustomHeader title="Home" /> */}
                 {Header()}
 
                 <ScrollView style={HomeScreenStyle.scrollView}>

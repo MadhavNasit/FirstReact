@@ -107,7 +107,7 @@ const FlatListScreen = () => {
       <StatusBar barStyle="light-content" />
       {loaderShow ? <Loader /> :
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
-          <CustomHeader title="Flat List" />
+          {/* <CustomHeader title="Flat List" /> */}
           <FlatList
             data={FLATLIST_DATA}
             renderItem={renderItem}

@@ -89,7 +89,7 @@ const UserDetailsStyle = StyleSheet.create({
   },
   cardView: {
     // height: 90,
-    // borderColor: 'grey',
+    borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 14,

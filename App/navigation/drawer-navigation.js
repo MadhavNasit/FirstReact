@@ -10,7 +10,7 @@ import StackNavigation from './stack-navigation';
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigation() {
+const DrawerNavigation = () => {
   const dimensions = useWindowDimensions();
   const isLargeScreen = dimensions.width >= 400;
   return (
@@ -38,3 +38,5 @@ export default function DrawerNavigation() {
     </NavigationContainer>
   );
 }
+
+export default DrawerNavigation;
