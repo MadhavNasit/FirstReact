@@ -8,6 +8,7 @@ import { validateName } from '../utils/validation';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Add_User } from '../redux/actions/actionType';
+import FocusAwareStatusBar from '../component/focus-aware-statusbar';
 
 // const User_Data = [];
 const Gender_List = [
@@ -310,6 +311,7 @@ const UsersRedux = () => {
   return (
     <SafeAreaView style={UserDetailsStyle.safeAreaView, { backgroundColor: 'blue' }}>
       <StatusBar barStyle="light-content" />
+      <FocusAwareStatusBar barStyle="light-content" />
       <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
         <Text style={{ color: '#fff', fontSize: 28, fontWeight: 'bold' }}>User Details</Text>
       </View>

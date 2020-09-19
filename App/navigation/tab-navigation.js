@@ -39,7 +39,7 @@ const tabItem = (screen, stack, source) => {
     <Tab.Screen
       options={{
         tabBarIcon: ({ focused }) => tabIcon(focused, source),
-        unmountOnBlur: true
+        // unmountOnBlur: true
       }}
       name={screen}
       component={stack}

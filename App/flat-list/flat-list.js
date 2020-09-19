@@ -3,6 +3,7 @@ import { SafeAreaView, View, FlatList, Text, Image, ImageBackground, ScrollView,
 import FlatListStyle from './flat-list-style';
 import Loader from '../component/loader';
 import CustomHeader from '../component/custom-header';
+import FocusAwareStatusBar from '../component/focus-aware-statusbar';
 
 // List of title and Image
 const FLATLIST_DATA = [
@@ -104,7 +105,7 @@ const FlatListScreen = () => {
   // Return Loader for 3 sec and then Return flat List
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
-      <StatusBar barStyle="light-content" />
+      <FocusAwareStatusBar barStyle="dark-content" />
       {loaderShow ? <Loader /> :
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
           {/* <CustomHeader title="Flat List" /> */}

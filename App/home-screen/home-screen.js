@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, ScrollView, Image, TouchableOpacity } from 'react-native';
 import HomeScreenStyle from './home-screen-style';
 import AddPersonalInfo from '../component/AddPersonalInfo';
-import CustomHeader from '../component/custom-header';
+import FocusAwareStatusBar from '../component/focus-aware-statusbar';
 
 const Header = () => {
     return (
@@ -88,7 +88,8 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
-            <StatusBar barStyle="light-content" />
+            {/* <StatusBar barStyle="light-content" /> */}
+            <FocusAwareStatusBar barStyle="light-content" />
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
                 {/* <CustomHeader title="Home" /> */}
                 {Header()}
