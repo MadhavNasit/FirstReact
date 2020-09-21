@@ -11,6 +11,7 @@ import FlexScreen from '../flex-practice/flex-screen';
 import App from '../../App';
 import StackNavigation from './stack-navigation';
 import UsersMobx from '../users-mobx/users-mobx';
+import TestAPI from '../api-test/api-test';
 
 // function HomeScreen({ navigation }) {
 //   return (
@@ -92,6 +93,7 @@ export default function TabNavigation() {
       >
         {tabItem('Home', StackNavigation, icons.home)}
         {tabItem('User Details', UsersMobx, icons.menu)}
+        {tabItem('API Test', TestAPI, icons.test)}
         {tabItem('FlexScreen', FlexScreen, icons.gallery)}
         {tabItem('flatList1', FlatList, icons.flatlist)}
       </Tab.Navigator>

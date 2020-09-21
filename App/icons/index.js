@@ -3,5 +3,6 @@ export const icons = {
   home: require('./homescreen.png'),
   menu: require('./menu.png'),
   back: require('./back.png'),
+  test: require('./test.png'),
   gallery: require('./gallery.png')
 }
