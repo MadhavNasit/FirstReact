@@ -1,30 +1,30 @@
 import React from 'react';
-import { Header } from 'react-native/Libraries/NewAppScreen';
+// import { Header } from 'react-native/Libraries/NewAppScreen';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import { color } from 'react-native-reanimated';
 import { icons } from '../icons';
-import { useNavigation } from '@react-navigation/native';
-import { useIsDrawerOpen } from '@react-navigation/drawer';
+// import { useNavigation } from '@react-navigation/native';
+// import { useIsDrawerOpen } from '@react-navigation/drawer';
 
 
 
 const CustomHeader = (props) => {
-  const isDrawerOpen = useIsDrawerOpen();
+  // const isDrawerOpen = useIsDrawerOpen();
   const { title } = props;
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   return (
     <View style={Styles.headerView}>
       <View style={Styles.innerView}>
-        <View style={Styles.firstView}>
+        {/* <View style={Styles.firstView}>
           <TouchableOpacity
             onPress={() => navigation.openDrawer()}>
             <Image source={isDrawerOpen ? icons.back : icons.menu} style={Styles.imageView}></Image>
           </TouchableOpacity>
-        </View>
-        <View style={Styles.secondView}>
-          <Text style={Styles.headerText} numberOfLines={1}>{title}</Text>
-        </View>
-        <View style={Styles.thirdView}></View>
+        </View> */}
+        {/* <View style={Styles.secondView}> */}
+        <Text style={Styles.headerText} numberOfLines={1}>{title}</Text>
+        {/* </View> */}
+        {/* <View style={Styles.thirdView}></View> */}
       </View>
     </View >
   );
@@ -33,24 +33,25 @@ const CustomHeader = (props) => {
 const Styles = StyleSheet.create({
   //Header Styles
   headerView: {
-    height: 60,
-    backgroundColor: 'blue',
+    height: 55,
+    backgroundColor: '#0000ff',
   },
   firstView: {
     flex: 1,
   },
   secondView: {
-    flex: 6,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 5,
+    // flex: 6,
+    // flexDirection: 'row',
+    // justifyContent: 'center',
+    // paddingHorizontal: 5,
   },
   thirdView: {
     flex: 1,
   },
   innerView: {
     flex: 1,
-    flexDirection: 'row',
+    // flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   imageView: {
@@ -62,7 +63,7 @@ const Styles = StyleSheet.create({
   },
 
   headerText: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#fff',
   },

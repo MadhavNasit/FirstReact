@@ -43,7 +43,7 @@ const AddTechnologies = (typeOfTechnology, technologies) => {
     let myloop = [];
     for (let i = 0; i < techArray.length; i++) {
         myloop.push(
-            <Text>{i + 1 + ` . ` + techArray[i]}</Text>
+            <Text key={i}>{i + 1 + ` . ` + techArray[i]}</Text>
         );
     }
     return (
@@ -110,16 +110,32 @@ const HomeScreen = ({ navigation }) => {
                         <View style={HomeScreenStyle.personalInfoData}>
                             <AddPersonalInfo
                                 subHeading={"D.O.B"}
-                                information={`29/03/1999`}
-                            // onUpdateCounter={(value,index)=>setVariable1(value)}
+                                information={`9876543210`}
                             />
-                            {/* {AddPersonalInformation(`D.O.B`, `29/03/1999`)}
-                        {AddPersonalInformation(`Cont`, `9876543210`)}
-                        {AddPersonalInformation(`Email`, `madhavnasit29@gmail.com`)}
-                        {AddPersonalInformation(`Nationality`, `Indian`)}
-                        {AddPersonalInformation(`Primary Language`, `Gujarati`)}
-                        {AddPersonalInformation(`Known Languages`, `English, Hindi, Gujarati`)}
-                        {AddPersonalInformation(`Marital Status`, `Unmarriedd`)} */}
+                            <AddPersonalInfo
+                                subHeading={"Cont"}
+                                information={`29/03/1999`}
+                            />
+                            <AddPersonalInfo
+                                subHeading={"Email"}
+                                information={`madhavnasit29@gmail.com`}
+                            />
+                            <AddPersonalInfo
+                                subHeading={"Nationality"}
+                                information={`Indian`}
+                            />
+                            <AddPersonalInfo
+                                subHeading={"Primary Language"}
+                                information={`Gujarati`}
+                            />
+                            <AddPersonalInfo
+                                subHeading={"Known Languages"}
+                                information={`English, Hindi, Gujarati`}
+                            />
+                            <AddPersonalInfo
+                                subHeading={"Marital Status"}
+                                information={`Unmarriedd`}
+                            />
                         </View>
                     </View>
 

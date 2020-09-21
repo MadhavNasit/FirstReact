@@ -4,7 +4,7 @@ const HomeScreenStyle = StyleSheet.create({
   headerView: {
     backgroundColor: '#000FFF',
     paddingVertical: 15,
-    height: 140,
+    height: 110,
   },
   headerText: {
     color: '#fff',

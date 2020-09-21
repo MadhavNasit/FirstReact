@@ -10,6 +10,7 @@ import UserDetails from '../user-details/user-details';
 import FlexScreen from '../flex-practice/flex-screen';
 import App from '../../App';
 import StackNavigation from './stack-navigation';
+import UsersMobx from '../users-mobx/users-mobx';
 
 // function HomeScreen({ navigation }) {
 //   return (
@@ -38,7 +39,7 @@ const tabItem = (screen, stack, source) => {
     <Tab.Screen
       options={{
         tabBarIcon: ({ focused }) => tabIcon(focused, source),
-        unmountOnBlur: true
+        // unmountOnBlur: true
       }}
       name={screen}
       component={stack}
@@ -55,14 +56,14 @@ function tabIcon(focused, source) {
 const TAB_ICON = {
   height: 25,
   width: 25,
-  tintColor: "red"
+  tintColor: "#0000ff"
 };
 const INACTIVE_TAB_ICON = {
   ...TAB_ICON,
-  tintColor: "black"
+  tintColor: "#999999"
 };
 const TAB_VIEW = {
-  borderTopColor: "red",
+  borderTopColor: "#0000ff",
   borderTopWidth: 0,
   minWidth: "100%",
   justifyContent: 'center',
@@ -73,8 +74,24 @@ const TAB_VIEW = {
 export default function TabNavigation() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        tabBarOptions={{
+          style: {
+            // backgroundColor: '#0000ff',
+            borderTopColor: 'gray',
+            borderTopWidth: 1
+          },
+          labelStyle: {
+            fontSize: 12
+          },
+          activeTintColor: '#0000ff',
+          inactiveTintColor: '#999999',
+          // activeBackgroundColor: '#0000ff',
+          // inactiveBackgroundColor: '#0d6e69'
+        }}
+      >
         {tabItem('Home', StackNavigation, icons.home)}
+        {tabItem('User Details', UsersMobx, icons.menu)}
         {tabItem('FlexScreen', FlexScreen, icons.gallery)}
         {tabItem('flatList1', FlatList, icons.flatlist)}
       </Tab.Navigator>
