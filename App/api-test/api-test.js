@@ -5,46 +5,69 @@ import axios from 'axios';
 
 const TestAPI = () => {
 
-  const [dataFetch, setDataFetch] = useState();
-  const [dataAxios, setDataAiox] = useState();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState();
 
   useEffect(() => {
-    getMoviesFromFetchApi();
-    getMovieFromAxiosApi();
+    getDataFromAPI(page);
   }, []);
 
-  // Fetch APi data using Fetch
-  const getMoviesFromFetchApi = () => {
-    fetch('https://reactnative.dev/movies.json')
-      .then((response) => response.json())
-      .then((json) => {
-        setDataFetch(json.movies);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   // fetch API data using Axios
-  const getMovieFromAxiosApi = () => {
-    axios.get(`https://reactnative.dev/movies.json`)
+  const getDataFromAPI = (page) => {
+    setLoading(true);
+    axios.get(`https://reqres.in/api/users?page=${page}`)
       .then(res => {
-        setDataAiox(res.data.movies);
+        setPageSize(res.data.total_pages);
+        let listData = data;
+        let newData = listData.concat(res.data.data);
+        setData(newData);
+        setPage(page + 1);
+        setLoading(false);
       })
+      .catch(error => {
+        setLoading(false);
+        console.warn('Something Went Wrong');
+      });
   }
 
   function renderItem({ item, index }) {
 
     return (
-      <View key={index} style={{ borderWidth: 1, borderColor: 'gray' }}>
-        <Text>
-          <Text>{item.title}</Text>
-          <Text>{'--'}</Text>
-          <Text>{item.releaseYear}</Text>
-        </Text>
+      <View key={index} style={Styles.flatListItem}>
+        <View style={Styles.fiedlView}>
+          <Text style={Styles.subHeading}>{`Id`}</Text>
+          <Text style={Styles.saperator}>{`:`}</Text>
+          <Text style={Styles.textField}>{item.id}</Text>
+        </View>
+        <View style={Styles.fiedlView}>
+          <Text style={Styles.subHeading}>{`First Name`}</Text>
+          <Text style={Styles.saperator}>{`:`}</Text>
+          <Text style={Styles.textField}>{item.first_name}</Text>
+        </View>
+        <View style={Styles.fiedlView}>
+          <Text style={Styles.subHeading}>{`Last Name`}</Text>
+          <Text style={Styles.saperator}>{`:`}</Text>
+          <Text style={Styles.textField}>{item.last_name}</Text>
+        </View>
+        <View style={Styles.fiedlView}>
+          <Text style={Styles.subHeading}>{`Email`}</Text>
+          <Text style={Styles.saperator}>{`:`}</Text>
+          <Text style={Styles.textField}>{item.email}</Text>
+        </View>
       </View>
     );
   }
+
+  // Load more data while Scroll
+  handleLoadMore = () => {
+    if (page <= pageSize) {
+      if (!loading) {
+        getDataFromAPI(page);
+      }
+    }
+  };
 
   return (
     <SafeAreaView style={Styles.safeAreaView}>
@@ -52,20 +75,13 @@ const TestAPI = () => {
 
       <CustomHeader title="API Test" />
       <View style={Styles.mainview}>
+
         <View style={Styles.flatListView}>
-          <Text style={Styles.headingText}>{'Movie Data Fetch'}</Text>
           <FlatList
-            data={dataFetch}
+            data={data}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
-        <View style={Styles.flatListView}>
-          <Text style={Styles.headingText}>{'Movie Data Axios'}</Text>
-          <FlatList
-            data={dataAxios}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index.toString()}
+            onEndReached={() => handleLoadMore()}
           />
         </View>
       </View>
@@ -81,15 +97,38 @@ const Styles = StyleSheet.create({
   },
   mainview: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#e3e3e3'
   },
-  flatListView: {
-    padding: 20
-  },
+  // flatListView: {
+  //   paddingVertical: 10
+  // },
   headingText: {
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  flatListItem: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 5,
+    marginHorizontal: 20,
+    marginTop: 4,
+    marginBottom: 4,
+    borderRadius: 5,
+    backgroundColor: '#fff'
+  },
+  fiedlView: {
+    flexDirection: 'row'
+  },
+  subHeading: {
+    flex: 5,
+    fontWeight: 'bold'
+  },
+  saperator: {
+    flex: 1
+  },
+  textField: {
+    flex: 12
   }
 });
 
