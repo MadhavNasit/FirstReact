@@ -26,6 +26,7 @@
     "react-native-datepicker": "^1.7.2",
     "react-native-dropdown-picker": "^3.6.8",
     "react-native-easy-select": "^1.4.2",
+    "react-native-fbsdk": "^2.0.0",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-indicators": "^0.17.0",
     "react-native-keyboard-manager": "^4.0.13-16",

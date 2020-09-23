@@ -1,31 +1,23 @@
 import React from 'react';
-// import { Header } from 'react-native/Libraries/NewAppScreen';
-import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
-import { color } from 'react-native-reanimated';
-import { icons } from '../icons';
-// import { useNavigation } from '@react-navigation/native';
-// import { useIsDrawerOpen } from '@react-navigation/drawer';
-
-
+import { View, StyleSheet, Text } from 'react-native';
+import Login from '../facebook-login/facebook-login';
 
 const CustomHeader = (props) => {
-  // const isDrawerOpen = useIsDrawerOpen();
   const { title } = props;
-  // const navigation = useNavigation();
   return (
     <View style={Styles.headerView}>
       <View style={Styles.innerView}>
-        {/* <View style={Styles.firstView}>
-          <TouchableOpacity
-            onPress={() => navigation.openDrawer()}>
-            <Image source={isDrawerOpen ? icons.back : icons.menu} style={Styles.imageView}></Image>
-          </TouchableOpacity>
-        </View> */}
-        {/* <View style={Styles.secondView}> */}
-        <Text style={Styles.headerText} numberOfLines={1}>{title}</Text>
-        {/* </View> */}
-        {/* <View style={Styles.thirdView}></View> */}
+        <View style={Styles.firstView}>
+        </View>
+        <View style={Styles.secondView}>
+          <Text
+            numberOfLines={1} style={Styles.headerText} numberOfLines={1}>{title}</Text>
+        </View>
+        <View style={Styles.thirdView}>
+          <Login />
+        </View>
       </View>
+
     </View >
   );
 }
@@ -37,20 +29,22 @@ const Styles = StyleSheet.create({
     backgroundColor: '#0000ff',
   },
   firstView: {
-    flex: 1,
+    flex: 3,
   },
   secondView: {
-    // flex: 6,
-    // flexDirection: 'row',
-    // justifyContent: 'center',
-    // paddingHorizontal: 5,
+    flex: 6,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingHorizontal: 5,
   },
   thirdView: {
-    flex: 1,
+    flex: 3,
+    height: 30,
+    paddingRight: 4
   },
   innerView: {
     flex: 1,
-    // flexDirection: 'row',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },

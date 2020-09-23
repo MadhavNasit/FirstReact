@@ -27,22 +27,6 @@ const FlatListScreen = () => {
     }, 3000);
   }, []);
 
-
-  // Return Header View
-  const HeaderView = () => {
-    return (
-      <View style={FlatListStyle.headerView}>
-        <ImageBackground
-          style={FlatListStyle.imageFit}
-          source={require('../../images/spaceBanner.jpg')}
-        >
-          <Text style={FlatListStyle.textHeader}>Space Images</Text>
-        </ImageBackground>
-
-      </View>
-    );
-  }
-
   // Return "Thats All" at Bottom where FlatList Ends
   const FooterView = () => {
     if (!FLATLIST_DATA.length) return null;
@@ -104,7 +88,7 @@ const FlatListScreen = () => {
   // Return Loader for 3 sec and then Return flat List
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor="#0000ff" />
       {loaderShow ? <Loader /> :
         <View style={{ flex: 1, backgroundColor: '#fff' }}>
           <CustomHeader title="Flat List" />

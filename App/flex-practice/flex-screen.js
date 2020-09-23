@@ -64,7 +64,7 @@ const SpaceImagesView = () => {
 const FlexScreen = () => {
   return (
     <SafeAreaView style={FlexScreenStyle.safeAreaView}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor="#0000ff" />
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <CustomHeader title="Flex screen" />
         <ScrollView

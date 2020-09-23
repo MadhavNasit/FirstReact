@@ -9,6 +9,7 @@ import { name as appName } from './app.json';
 
 import { Provider } from 'mobx-react';
 import store from './App/mobx/user-list-store';
+import Login from './App/facebook-login/facebook-login';
 
 // import applyDecoratedDescriptor from '@babel/runtime/helpers/esm/applyDecoratedDescriptor'
 // import initializerDefineProperty from '@babel/runtime/helpers/esm/initializerDefineProperty'

@@ -71,7 +71,7 @@ const TestAPI = () => {
 
   return (
     <SafeAreaView style={Styles.safeAreaView}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor="#0000ff" />
 
       <CustomHeader title="API Test" />
       <View style={Styles.mainview}>

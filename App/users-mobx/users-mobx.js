@@ -5,6 +5,7 @@ import Swipeout from 'react-native-swipeout';
 import { validateName } from '../utils/validation';
 
 import { inject, observer } from "mobx-react";
+import CustomHeader from '../component/custom-header';
 
 // const User_Data = [];
 const Gender_List = [
@@ -279,10 +280,9 @@ const UsersMobx = (props) => {
 
   return (
     <SafeAreaView style={UserDetailsStyle.safeAreaView, { backgroundColor: 'blue' }}>
-      <StatusBar barStyle="light-content" />
-      <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#fff', fontSize: 28, fontWeight: 'bold' }}>User Details</Text>
-      </View>
+      <StatusBar barStyle="light-content" backgroundColor="#0000ff" />
+      <CustomHeader title="User Details" />
+
       {AddUserForm()}
 
       <View style={UserDetailsStyle.flatListView, { backgroundColor: '#fff' }}>

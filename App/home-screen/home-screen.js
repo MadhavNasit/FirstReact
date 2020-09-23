@@ -88,7 +88,7 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#0000ff' }}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle="light-content" backgroundColor="#0000ff" />
             <View style={{ flex: 1, backgroundColor: '#fff' }}>
                 <CustomHeader title="Home" />
                 {Header()}
