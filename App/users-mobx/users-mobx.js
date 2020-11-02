@@ -7,6 +7,9 @@ import { validateName } from '../utils/validation';
 import { inject, observer } from "mobx-react";
 import CustomHeader from '../component/custom-header';
 
+import { addUser, observeUsers, usersArray } from '../WatermeloanDb/helper';
+import withObservables from '@nozbe/with-observables';
+
 // const User_Data = [];
 const Gender_List = [
   {
@@ -19,9 +22,9 @@ const Gender_List = [
   }
 ];
 
-const UsersMobx = (props) => {
+const UsersMobx = ({ users }) => {
 
-  const { User_Data, addUser, editUser, deleteUser } = props.store;
+  // const { User_Data, editUser, deleteUser } = props.store;
 
   const [userName, setUserName] = useState('');
   const [userNameError, setUserNameError] = useState('');
@@ -45,7 +48,7 @@ const UsersMobx = (props) => {
     this.inputs[id].focus();
   }
 
-  const ValidateFields = () => {
+  const ValidateFields = async () => {
     Keyboard.dismiss();
     let isNameError = NameValidation();
     let isageError = AgeValidation();
@@ -57,10 +60,10 @@ const UsersMobx = (props) => {
       userObj["age"] = age;
       userObj["email"] = email;
       if (isEdit == false) {
-        addUser(userObj);
+        await addUser({ name: userName, age, email });
       }
       else {
-        editUser(editKey, userObj);
+        // editUser(editKey, userObj);
         setIsEdit(false);
       }
 
@@ -145,7 +148,7 @@ const UsersMobx = (props) => {
   }
 
   const FooterView = () => {
-    if (!User_Data.length) return null;
+    // if (!User_Data.length) return null;
     return (
       <View style={UserDetailsStyle.footerView}>
         <Text style={UserDetailsStyle.textFooter}>{`--  That's All  --`}</Text>
@@ -155,9 +158,9 @@ const UsersMobx = (props) => {
 
   const editUserData = (key) => {
     let editObject = [];
-    editObject = User_Data.filter((item) =>
-      item.key == key
-    );
+    // editObject = User_Data.filter((item) =>
+    //   item.key == key
+    // );
     setUserName(editObject[0].userObj.name);
     setAge(editObject[0].userObj.age);
     setEmail(editObject[0].userObj.email);
@@ -179,20 +182,19 @@ const UsersMobx = (props) => {
         text: 'Delete',
         type: 'delete',
         onPress: () => {
-          deleteUser(item.key);
+          // deleteUser(item.key);
         }
       }
     ];
     return (
-
       <Swipeout
         right={swipeoutBtns}
         autoClose={true}
       >
         <View key={item.key} style={UserDetailsStyle.cardView}>
-          {AddUserDetail('Name', item.userObj.name)}
-          {AddUserDetail('Age', item.userObj.age)}
-          {AddUserDetail('Email', item.userObj.email)}
+          {AddUserDetail('Name', item.name)}
+          {AddUserDetail('Age', item.age)}
+          {AddUserDetail('Email', item.email)}
         </View>
       </Swipeout>
     );
@@ -217,8 +219,8 @@ const UsersMobx = (props) => {
                 value={userName}
                 maxLength={40}
                 onChangeText={value => setUserName(value)}
-                returnKeyType={"next"}
-                onSubmitEditing={() => { this.focusTheField('ageField'); }}
+              // returnKeyType={"next"}
+              // onSubmitEditing={() => { this.focusTheField('ageField'); }}
               />
             </View>
             <View style={UserDetailsStyle.errorView}>
@@ -235,11 +237,11 @@ const UsersMobx = (props) => {
                 maxLength={3}
                 onChangeText={value => setAge(value)}
                 keyboardType={'numeric'}
-                ref={(input) => { secondTextInput = input; }}
-                blurOnSubmit={false}
-                returnKeyType={"next"}
-                ref={input => { this.inputs['ageField'] = input }}
-                onSubmitEditing={() => { this.focusTheField('emailField'); }}
+              // ref={(input) => { secondTextInput = input; }}
+              // blurOnSubmit={false}
+              // returnKeyType={"next"}
+              // ref={input => { this.inputs['ageField'] = input }}
+              // onSubmitEditing={() => { this.focusTheField('emailField'); }}
               />
             </View>
             <View style={UserDetailsStyle.errorView}>
@@ -257,7 +259,7 @@ const UsersMobx = (props) => {
                 maxLength={50}
                 // blurOnSubmit={false}
                 onChangeText={value => setEmail(value)}
-                ref={input => { this.inputs['emailField'] = input }}
+              // ref={input => { this.inputs['emailField'] = input }}
               // onSubmitEditing={() => { this.focusTheField('genderField'); }}
               />
             </View>
@@ -277,7 +279,6 @@ const UsersMobx = (props) => {
     );
   }
 
-
   return (
     <SafeAreaView style={UserDetailsStyle.safeAreaView, { backgroundColor: 'blue' }}>
       <StatusBar barStyle="light-content" backgroundColor="#0000ff" />
@@ -287,12 +288,13 @@ const UsersMobx = (props) => {
 
       <View style={UserDetailsStyle.flatListView, { backgroundColor: '#fff' }}>
         <FlatList
-          data={User_Data}
+          data={users}
+          style={{ flexGrow: 1 }}
+          contentContainerStyle={{ flexGrow: 1 }}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
           ListEmptyComponent={EmptyListComponentView()}
           ListFooterComponent={FooterView()}
-          extraData={User_Data}
         />
       </View>
     </SafeAreaView >
@@ -322,5 +324,10 @@ const pickerSelectStyles = StyleSheet.create({
   },
 });
 
+const enhanceWithUsers = withObservables([], () => ({
+  users: observeUsers(),
+}));
 
-export default inject("store")(observer(UsersMobx));
+export default enhanceWithUsers(UsersMobx);
+
+// export default inject("store")(observer(UsersMobx));

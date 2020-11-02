@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* FirstReactTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FirstReactTests.m */; };
 		58C441C99E6DCE0CF890C74B /* libPods-FirstReact-FirstReactTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC22F6A3B1A0288CE5117497 /* libPods-FirstReact-FirstReactTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9A5FA16C254FD7C5004477BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5FA16B254FD7C5004477BB /* File.swift */; };
 		C6B7745A3CF4F2ECA0FAE801 /* libPods-FirstReact-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3E28AC8138D6F9995BDA67C /* libPods-FirstReact-tvOS.a */; };
 		FAC65E41DC150AC7077BBDBB /* libPods-FirstReact-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E237C3635638738367E241DB /* libPods-FirstReact-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,8 @@
 		5AC9743FF6BAFD98EE3069A9 /* Pods-FirstReact.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirstReact.debug.xcconfig"; path = "Target Support Files/Pods-FirstReact/Pods-FirstReact.debug.xcconfig"; sourceTree = "<group>"; };
 		6355DC3C5E9FF703BE039958 /* Pods-FirstReact-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirstReact-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-FirstReact-tvOS/Pods-FirstReact-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FirstReact/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A5FA16A254FD7C5004477BB /* FirstReact-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirstReact-Bridging-Header.h"; sourceTree = "<group>"; };
+		9A5FA16B254FD7C5004477BB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		AC22F6A3B1A0288CE5117497 /* libPods-FirstReact-FirstReactTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirstReact-FirstReactTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E237C3635638738367E241DB /* libPods-FirstReact-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirstReact-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -174,12 +177,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				9A5FA16B254FD7C5004477BB /* File.swift */,
 				13B07FAE1A68108700A75B9A /* FirstReact */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FirstReactTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				5183B68234C3715C91CA3525 /* Pods */,
+				9A5FA16A254FD7C5004477BB /* FirstReact-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -293,7 +298,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1160;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -640,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				9A5FA16C254FD7C5004477BB /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -681,6 +687,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EC3C477434E2FA4C509242D /* Pods-FirstReact-FirstReactTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -704,6 +711,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22B62A096736293E3E07FF66 /* Pods-FirstReact-FirstReactTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = FirstReactTests/Info.plist;
@@ -737,6 +745,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FirstReact;
 				PRODUCT_NAME = FirstReact;
+				SWIFT_OBJC_BRIDGING_HEADER = "FirstReact-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -759,6 +768,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FirstReact;
 				PRODUCT_NAME = FirstReact;
+				SWIFT_OBJC_BRIDGING_HEADER = "FirstReact-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
