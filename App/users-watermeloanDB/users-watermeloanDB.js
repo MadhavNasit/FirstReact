@@ -4,27 +4,12 @@ import UserDetailsStyle from '../user-details/user-details-style';
 import Swipeout from 'react-native-swipeout';
 import { validateName } from '../utils/validation';
 
-import { inject, observer } from "mobx-react";
 import CustomHeader from '../component/custom-header';
 
-import { addUser, observeUsers, usersArray } from '../WatermeloanDb/helper';
+import { addUser, observeUsers, deleteUser, editUser, editUserInfo } from '../WatermeloanDb/helper';
 import withObservables from '@nozbe/with-observables';
 
-// const User_Data = [];
-const Gender_List = [
-  {
-    label: 'Male',
-    value: 'male',
-  },
-  {
-    label: 'Female',
-    value: 'female',
-  }
-];
-
-const UsersMobx = ({ users }) => {
-
-  // const { User_Data, editUser, deleteUser } = props.store;
+const UsersWatermeloanDb = ({ users }) => {
 
   const [userName, setUserName] = useState('');
   const [userNameError, setUserNameError] = useState('');
@@ -35,19 +20,6 @@ const UsersMobx = ({ users }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [editKey, setEditKey] = useState('');
 
-  const placeholder = {
-    label: 'Select a gender...',
-    value: null,
-    color: '#9EA0A4',
-  };
-
-
-  inputs = {};
-
-  focusTheField = (id) => {
-    this.inputs[id].focus();
-  }
-
   const ValidateFields = async () => {
     Keyboard.dismiss();
     let isNameError = NameValidation();
@@ -55,15 +27,11 @@ const UsersMobx = ({ users }) => {
     let isEmailError = EmailValidatation();
 
     if (isNameError && isageError && isEmailError) {
-      const userObj = {};
-      userObj["name"] = userName;
-      userObj["age"] = age;
-      userObj["email"] = email;
       if (isEdit == false) {
         await addUser({ name: userName, age, email });
       }
       else {
-        // editUser(editKey, userObj);
+        await editUserInfo(editKey, { name: userName, age, email });
         setIsEdit(false);
       }
 
@@ -148,7 +116,7 @@ const UsersMobx = ({ users }) => {
   }
 
   const FooterView = () => {
-    // if (!User_Data.length) return null;
+    if (!users.length) return null;
     return (
       <View style={UserDetailsStyle.footerView}>
         <Text style={UserDetailsStyle.textFooter}>{`--  That's All  --`}</Text>
@@ -156,33 +124,30 @@ const UsersMobx = ({ users }) => {
     );
   }
 
-  const editUserData = (key) => {
-    let editObject = [];
-    // editObject = User_Data.filter((item) =>
-    //   item.key == key
-    // );
-    setUserName(editObject[0].userObj.name);
-    setAge(editObject[0].userObj.age);
-    setEmail(editObject[0].userObj.email);
+  const editUserData = async (id) => {
+    let editObject = await editUser(id);
+    setUserName(editObject.name);
+    setAge(editObject.age.toString());
+    setEmail(editObject.email);
     setIsEdit(true);
-    setEditKey(key);
+    setEditKey(id);
   }
 
 
-  function renderItem({ item, index }) {
+  function renderItem({ item }) {
     var swipeoutBtns = [
       {
         text: 'Edit',
         type: 'primary',
         onPress: () => {
-          editUserData(item.key);
+          editUserData(item.id);
         }
       },
       {
         text: 'Delete',
         type: 'delete',
         onPress: () => {
-          // deleteUser(item.key);
+          deleteUser(item.id);
         }
       }
     ];
@@ -206,9 +171,6 @@ const UsersMobx = ({ users }) => {
       <View
         style={UserDetailsStyle.keyboardAvoidingView, { backgroundColor: '#fff' }}
       >
-        {/* <View style={UserDetailsStyle.formHeading}>
-          <Text style={UserDetailsStyle.textFormHeading}>{`Add User Details`}</Text>
-        </View> */}
         <View style={UserDetailsStyle.formView}>
           <View style={UserDetailsStyle.formFieldBox}>
             <View style={UserDetailsStyle.formFieldView}>
@@ -219,8 +181,6 @@ const UsersMobx = ({ users }) => {
                 value={userName}
                 maxLength={40}
                 onChangeText={value => setUserName(value)}
-              // returnKeyType={"next"}
-              // onSubmitEditing={() => { this.focusTheField('ageField'); }}
               />
             </View>
             <View style={UserDetailsStyle.errorView}>
@@ -237,11 +197,6 @@ const UsersMobx = ({ users }) => {
                 maxLength={3}
                 onChangeText={value => setAge(value)}
                 keyboardType={'numeric'}
-              // ref={(input) => { secondTextInput = input; }}
-              // blurOnSubmit={false}
-              // returnKeyType={"next"}
-              // ref={input => { this.inputs['ageField'] = input }}
-              // onSubmitEditing={() => { this.focusTheField('emailField'); }}
               />
             </View>
             <View style={UserDetailsStyle.errorView}>
@@ -257,10 +212,8 @@ const UsersMobx = ({ users }) => {
                 placeholder={'Enter Email'}
                 value={email}
                 maxLength={50}
-                // blurOnSubmit={false}
                 onChangeText={value => setEmail(value)}
-              // ref={input => { this.inputs['emailField'] = input }}
-              // onSubmitEditing={() => { this.focusTheField('genderField'); }}
+                keyboardType='email-address'
               />
             </View>
             <View style={UserDetailsStyle.errorView}>
@@ -300,34 +253,9 @@ const UsersMobx = ({ users }) => {
     </SafeAreaView >
   );
 }
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    height: 40,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 4,
-    color: 'black',
-    marginBottom: 5,
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'purple',
-    borderRadius: 8,
-    color: 'black',
-    marginBottom: 5,
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-});
 
 const enhanceWithUsers = withObservables([], () => ({
   users: observeUsers(),
 }));
 
-export default enhanceWithUsers(UsersMobx);
-
-// export default inject("store")(observer(UsersMobx));
+export default enhanceWithUsers(UsersWatermeloanDb);
