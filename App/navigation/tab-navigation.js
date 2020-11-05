@@ -8,6 +8,7 @@ import FlexScreen from '../flex-practice/flex-screen';
 import StackNavigation from './stack-navigation';
 import TestAPI from '../api-test/api-test';
 import usersWatermeloanDB from '../users-watermeloanDB/users-watermeloanDB';
+import GraphScreen from '../graph/graph';
 
 const Tab = createBottomTabNavigator();
 const tabItem = (screen, stack, source) => {
@@ -67,7 +68,7 @@ export default function TabNavigation() {
         {tabItem('User Details', usersWatermeloanDB, icons.menu)}
         {tabItem('API Test', TestAPI, icons.test)}
         {tabItem('FlexScreen', FlexScreen, icons.gallery)}
-        {tabItem('flatList1', FlatList, icons.flatlist)}
+        {tabItem('Graph', GraphScreen, icons.flatlist)}
       </Tab.Navigator>
     </NavigationContainer>
   );
