@@ -2,6 +2,7 @@
  * @format
  */
 import 'react-native-gesture-handler';
+import 'es6-symbol/implement';
 import React from 'react';
 import { AppRegistry } from 'react-native';
 import TabNavigation from './App/navigation/tab-navigation';
