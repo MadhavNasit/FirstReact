@@ -7,8 +7,9 @@ import { icons } from '../icons';
 import FlexScreen from '../flex-practice/flex-screen';
 import StackNavigation from './stack-navigation';
 import TestAPI from '../api-test/api-test';
-import usersWatermeloanDB from '../users-watermeloanDB/users-watermeloanDB';
+import usersWatermeloanDB from '../redux-toolkit-screen/redux-toolkit';
 import GraphScreen from '../graph/graph';
+import ReduxToolkit from '../redux-toolkit-screen/redux-toolkit';
 
 const Tab = createBottomTabNavigator();
 const tabItem = (screen, stack, source) => {
@@ -65,7 +66,7 @@ export default function TabNavigation() {
         }}
       >
         {tabItem('Home', StackNavigation, icons.home)}
-        {tabItem('User Details', usersWatermeloanDB, icons.menu)}
+        {tabItem('User Details', ReduxToolkit, icons.menu)}
         {tabItem('API Test', TestAPI, icons.test)}
         {tabItem('FlexScreen', FlexScreen, icons.gallery)}
         {tabItem('Graph', GraphScreen, icons.flatlist)}

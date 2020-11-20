@@ -3,25 +3,22 @@ import { StyleSheet } from 'react-native';
 const UserDetailsStyle = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    backgroundColor: 'blue',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
   },
   keyBoardAvoidingView: {
-    flex: 6,
+    backgroundColor: '#fff'
   },
   formView: {
-    // flex: 6,
-    // marginHorizontal: 20,
     paddingVertical: 25,
     paddingHorizontal: 25,
     borderColor: 'blue',
-    // borderRadius: 5,
-    // borderBottomEndRadius: 10,
-    // borderBottomStartRadius: 10,
     borderWidth: 3,
   },
   formHeading: {
-    // marginHorizontal: 7,
-    // marginBottom: 10,
     paddingVertical: 18,
     backgroundColor: 'blue'
   },
@@ -83,17 +80,14 @@ const UserDetailsStyle = StyleSheet.create({
   },
   //Flat List View
   flatListView: {
-    flex: 10,
     borderColor: 'blue',
     borderWidth: 1,
   },
   cardView: {
-    // height: 90,
-    // borderColor: 'grey',
-    borderWidth: 1,
+    borderWidth: 0.2,
     backgroundColor: '#fff',
     paddingHorizontal: 14,
-    paddingVertical: 8
+    marginBottom: 10,
   },
   userDetailsView: {
     flex: 1,
@@ -120,9 +114,6 @@ const UserDetailsStyle = StyleSheet.create({
   emptyListView: {
     flex: 1,
     justifyContent: 'center',
-    // backgroundColor: 'red'
-    paddingVertical: '30%',
-    // backgroundColor: 'red'
   },
   textEmptyList: {
     fontWeight: 'bold',
@@ -131,7 +122,6 @@ const UserDetailsStyle = StyleSheet.create({
   },
   // Footer Style
   footerView: {
-    flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
     marginTop: 15,
